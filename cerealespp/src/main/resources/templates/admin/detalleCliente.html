@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="pagEstaticas/head :: headFragment (titulo='Administrador-Cliente')">
+
+</head>
+<body>
+	<!--nav-->
+	<nav th:replace="admin/navAdmin :: navAdmin"></nav>
+	<!--Fin del nav-->
+
+	<aside class="float-left col-lg-2 p-0 subNav">
+		<div class="container-fluid col-lg-12 h-100 col-12 p-0 float-left">
+			<nav class="nav nav-stacked text-center subNav">
+				<a class="nav-link col-lg-12 col-md-4 col-4 boton p-4 rounded-0"
+					href="adminClientesListar.html" th:href="@{/admin/clientes}">Clientes</a>
+				<a class="nav-link col-lg-12 col-md-4 col-4 p-4 rounded-0"
+					href="pedidos.html" th:href="@{/admin/pedidos}">Pedidos</a> <a
+					class="nav-link col-lg-12 col-md-4 col-4 p-4 rounded-0"
+					href="productos.html" th:href="@{/admin/productos}">Productos</a>
+
+			</nav>
+		</div>
+	</aside>
+	<section class="col-lg-10 float-left">
+		<div class="container-fluid mt-4">
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10 display-4 fondoVerde">
+					<div class="float-left">
+						<p>
+							Cliente <span th:text="${detalleCliente.nomEmpresa}">XXXXXXXXXXXXXXXX</span>
+						</p>
+					</div>
+				</div>
+				<div class="col-1"></div>
+			</div>
+		</div>
+		<div class="container-fluid mt-2 mb-2">
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10">
+					<a href="adminClientesListar.html" th:href="@{/admin/clientes}"
+						id="" class="btn boton" role="button">Volver atrás</a>
+				</div>
+				<div class="col-1"></div>
+			</div>
+		</div>
+		<div class="container-fluid mt-2 mb-3 ">
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10">
+					<div
+						class="col-4 float-left border border-success h-100  border-right-0 p-2">
+						<h4>Contacto</h4>
+						<div class="float-left w-100">
+							<p th:text="${detalleCliente.nombre}" class="float-left ml-1">xxxxxxxxxx</p>
+							<p th:text="${detalleCliente.apellidos}" class="float-left ml-1">xxxxxxxxxxx</p>
+
+						</div>
+						<h4>Teléfono</h4>
+						<p th:text="${detalleCliente.telefono}">xxxxxxxxxx</p>
+						<h4>Email</h4>
+						<p th:text="${detalleCliente.email}">xxxxxxxxxxxxxx@gmail.com</p>
+					</div>
+					<div
+						class="col-4 float-left border border-success border-right-0 h-100 border-left-0 p-2">
+						<h4>Dirección social</h4>
+						<p th:text="${detalleCliente.direccionSocial}">xxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+						<h4>Código postal</h4>
+						<p th:text="${detalleCliente.cpSocial}">xxxxxxxx</p>
+						<h4>Localidad</h4>
+						<p th:text="${detalleCliente.localidadSocial}">xxxxxxxxxxxxxxxx</p>
+						<h4>Provincia</h4>
+						<p th:text="${detalleCliente.provinciaSocial}">xxxxxxxxxxx</p>
+					</div>
+					<div
+						class="col-4 float-left border border-success h-100 border-left-0 p-2">
+						<h4>Dirección de envío</h4>
+						<p th:text="${detalleCliente.direccionEnvio}">xxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+						<h4>Código postal</h4>
+						<p
+							th:text="${detalleCliente.cpEnvio!=null}?${detalleCliente.cpEnvio}:'(no especificado)'">xxxxxxxx</p>
+						<h4>Localidad</h4>
+						<p th:text="${detalleCliente.localidadEnvio}">xxxxxxxxxxxxxxxx</p>
+						<h4>Provincia</h4>
+						<p th:text="${detalleCliente.provinciaEnvio}">xxxxxxxxxxx</p>
+
+					</div>
+
+				</div>
+				<div class="col-1"></div>
+			</div>
+		</div>
+		<div class="container-fluid mt-2 mb-5">
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10 table-responsive text-center">
+					<table class="table table-striped display" id="resultados">
+						<thead class="thead-dark">
+							<tr>
+								<th colspan="4">Historial de pedidos</th>
+							</tr>
+							<tr>
+								<th>Fecha</th>
+								<th>Referencia</th>
+								<th>Importe</th>
+								<th>Visualizar</th>
+							</tr>
+						</thead>
+						<tbody th:remove="all-but-first">
+							
+							<tr th:each="p : ${listaPedido}">
+								<td th:text="${#temporals.format(p.fecha, 'dd/MM/yyyy')}">6498498</td>
+								<td th:text="${p.id}">Mnemo</td>
+								<td th:text="|${#numbers.formatDecimal(p.precioTotal, 0, 'POINT', 2, 'COMMA')} €|">156474949<span> €</span></td>
+								<td><a href="detallePedido.html"
+									th:href="@{/admin/pedido/{id} (id=${p.id})}"><i
+										class="fa fa-eye btn boton" aria-hidden="true"></i></a></td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-1"></div>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>

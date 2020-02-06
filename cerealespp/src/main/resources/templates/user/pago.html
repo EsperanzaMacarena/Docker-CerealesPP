@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="pagEstaticas/head :: headFragment (titulo='Tramitar pedido')">
+
+</head>
+<body>
+	<!--nav-->
+	<!--AQUÍ PONER NAV DE USUARIO LOGUEADO-->
+	<nav th:replace="user/navUser :: navUser"></nav>
+	<!--Fin del nav-->
+
+
+	<!--Section-->
+	<section>
+		<div class="container-fluid mt-4">
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10 display-4 fondoVerde">
+					<div class="float-left">
+						<p>Tramitar pedido</p>
+					</div>
+				</div>
+				<div class="col-1"></div>
+			</div>
+		</div>
+		<!--BLOQUE PARA MOSTRAR LOS PRODUCTOS AÑADIDOS-->
+		<div class="container-fluid mt-4">
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10 fondoVerde">
+					<p class="font-weight-bold pt-2">Resumen del pedido</p>
+				</div>
+				<div class="col-1"></div>
+			</div>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-lg-2 col-5">
+					<p class="font-weight-bold pt-2">Id Pedido:</p>
+				</div>
+				<div class="col-lg-2 col-6">
+					<p class="pt-2" th:text="${pedido.id}">xxxxxxxxxxxxx</p>
+				</div>
+				<div class="col-1 d-lg-none"></div>
+				<div class="col-lg-2 col-5">
+					<p class="font-weight-bold pt-2">Total a pagar:</p>
+				</div>
+				<div class="col-lg-2 col-5">
+					<p class="pt-2" th:text="${pedido.precioTotal}">xxxxx.yy €</p>
+				</div>
+				<div class="col-1"></div>
+			</div>
+			<div class="row">
+				<div class="col-1 col"></div>
+				<div class="col-10 fondoVerde">
+					<p class="font-weight-bold pt-2">Información del envío</p>
+				</div>
+				<div class="col-1"></div>
+			</div>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="font-weight-bold col-lg-2 col-11 col-md-3">
+					<p class="pt-2">Dirección de envío:</p>
+				</div>
+				<div class="col-1 d-md-none"></div>
+				<div class="col-lg-8 col-11 col-md-6">
+					<p class="pt-2" th:text="${usuarioLogged.direccionEnvio}">Calle
+						xxxxxxxx xxxxxxxxx xxxxx Polígono xxxxxx Número xxx</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-lg-2 col-11 col-md-3 font-weight-bold">
+					<p class="pt-2">Código Postal</p>
+				</div>
+				<div class="col-1 d-md-none"></div>
+				<div class="col-lg-1 col-11 col-md-8">
+					<p class="pt-2 " th:text="${usuarioLogged.cpEnvio}">28000</p>
+				</div>
+				<div class="col-1 d-lg-none"></div>
+				<div class="font-weight-bold col-lg-1 col-11 col-md-3">
+					<p class="pt-2">Localidad</p>
+				</div>
+				<div class="col-1 d-md-none"></div>
+				<div class="col-lg-2 col-11 col-md-8">
+					<p class="pt-2" th:text="${usuarioLogged.localidadEnvio}">Las
+						Cabezas de San Juan</p>
+				</div>
+				<div class="col-1 d-lg-none"></div>
+				<div class="font-weight-bold col-lg-1 col-11 col-md-3">
+					<p class="pt-2">Provincia</p>
+				</div>
+				<div class="col-1 d-md-none"></div>
+				<div class="col-lg-1 col-11 col-md-8">
+					<p class="pt-2" th:text="${usuarioLogged.provinciaEnvio}">Santa
+						Cruz de Tenerife</p>
+				</div>
+				<div class="col-1 d-lg-none"></div>
+				<div class="font-weight-bold col-lg-1 col-11 col-md-3">
+					<p class="pt-2">Km Totales</p>
+				</div>
+				<div class="col-1 d-md-none"></div>
+				<div class="col-lg-1 col-11 col-md-6">
+					<p class="pt-2">
+						1200 <span> Km</span>
+					</p>
+				</div>
+				<div class="col-1"></div>
+			</div>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10 fondoVerde">
+					<p class="font-weight-bold pt-2">Datos del pago</p>
+				</div>
+				<div class="col-1"></div>
+			</div>
+			<div class="row">
+				<div class="col-1"></div>
+				<form class="col-10" name="pagar" id="pagar"
+					th:action="@{/user/pago/{id}/submit (id=${pedido.id})}"
+					method="POST" action="#" onsubmit="return validarPagar(this)">
+					<div class="row">
+						<div class="col-lg-5 col-md-12 col-12">
+							<div class="form-group">
+								<label for="titularTarjeta" class="font-weight-bold pt-2">Nombre
+									y apellidos de la tarjeta: </label> <input type="text"
+									class="form-control" name="titular"
+									id="" aria-describedby="helpId" placeholder=""> <small
+									id="helpId" class="form-text text-muted">Escriba el
+									nombre y apellidos que aparecen en la tarjeta</small>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-4 col-9">
+							<div class="form-group">
+								<label for="ccc" class="font-weight-bold pt-2">Número de
+									tarjeta </label> <input type="text" class="form-control" name="ccc"
+									id="ccc" aria-describedby="helpId" placeholder=""
+									onblur="comprobarTarjeta(this)"> <small id="helpId"
+									class="form-text text-muted">Escriba los 16 números de la tarjeta sin
+									espacios</small>
+							</div>
+						</div>
+						<div class="col-lg-2 col-6 col-md-4">
+							<div class="form-group">
+								<label for="ccc" class="font-weight-bold pt-2">CVV</label> <input
+									type="text" class="form-control w-50" name="cvv" id="cvv"
+									aria-describedby="helpId" placeholder=""
+									onblur="comprobarCvv(this)"> <small id="helpId"
+									class="form-text text-muted">Escriba los números (3) del
+									reverso</small>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-1"></div>
+
+					<div class="row mt-5">
+						<div class="col-1"></div>
+						<div class="col-10 text-right">
+							<button type="submit" class="btn btn-success">
+								Confirmar pedido y pagar <i class="fa fa-arrow-right pl-1"
+									aria-hidden="true"></i>
+							</button>
+
+						</div>
+						<div class="col-1"></div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+	</section>
+	<footer th:replace="pagEstaticas/footer :: footer"> </footer>
+
+</body>
+
+</html>

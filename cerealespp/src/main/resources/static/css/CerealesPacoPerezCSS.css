@@ -1,0 +1,159 @@
+body {
+	/* background-color:#5F5F5F*/;
+	/* background-color: #f0edd3;*/
+	
+}
+
+section, footer {
+	/*background-color: #5F5F5F*/;
+	/* background-color: #f0edd3;*/
+	
+}
+
+nav.navbar {
+	background-color: #353434 !important;
+	box-shadow: inset 0px 0px 29px -20px rgba(117, 84, 0, 1);
+}
+
+nav .navbar-brand img {
+	width: 50px;
+}
+
+.boton {
+	color: rgb(73, 67, 67) !important;
+	background-color: #DFB85A !important;
+	box-shadow: inset 0px 0px 39px -35px rgba(15, 12, 5, 1);
+}
+
+.boton:hover {
+	background-color: rgb(194, 146, 34) !important;
+}
+
+section div.caroussel a div:first-child {
+	height: 500px;
+}
+
+.carousel-caption {
+	background-color: rgb(241, 217, 167, 0.6);
+	color: #07020d;
+	font-weight: 400;
+}
+
+#img1 {
+	background-image: url("/img/trigo.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#img2 {
+	background-image: url("/img/soja.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+footer a {
+	color: black;
+}
+
+footer a:hover {
+	text-decoration: none;
+	color: #2a440b;
+	font-weight: 600;
+}
+
+.form-control:focus {
+	border-color: rgb(194, 146, 34);
+	box-shadow: 0 0 0 .2rem rgb(231, 201, 130);
+}
+
+.fondoVerde {
+	background-color: #3a5e11;
+	color: white;
+}
+
+.fondoBlanco {
+	background-color: white;
+}
+
+.boton:active {
+	transform: scale(0.90, 0.90);
+}
+
+.boton:focus, .btn:focus {
+	border-color: none !important;
+	box-shadow: none;
+}
+
+.divCesta {
+	width: 60%;
+	float: left;
+}
+
+.divCestaR {
+	width: 40%;
+	float: right;
+}
+
+@media only screen and (max-width:975px) {
+	.divCesta, .divCestaR {
+		width: 100%;
+	}
+}
+
+.infoEnvioCesta {
+	background-color: #f1ef726b;
+}
+
+/*actualizado 04/05*/
+.subNav {
+	background-color: #434e35;
+}
+
+.subNav a {
+	color: white;
+}
+
+.subNav a:hover {
+	font-weight: bold;
+}
+
+.modal-body {
+	overflow: auto;
+}
+
+/*@media screen and (min-width: 973px) {
+    section{
+      min-height: 527px;
+    }
+   }*/
+@media screen and (min-width: 992px) {
+	aside {
+		min-height: 100vh;
+	}
+}
+
+p {
+	word-break: break-all;
+}
+
+div.dataTables_paginate ul.pagination li a {
+	background-color: #3a5e11 !important;
+	color: white !important;
+	border: none;
+	outline: none;
+}
+
+div.dataTables_paginate ul.pagination li a:hover {
+	background-color: #1b2b08 !important;
+	font-weight: bold;
+}
+
+input[name=cantidad] {
+	width: 30%;
+}
+
+.eliminarProducto {
+	position: relative;
+	animation: move 10s;
+	animation-fill-mode: forwards;
+}

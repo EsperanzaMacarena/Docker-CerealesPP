@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<head th:replace="pagEstaticas/head :: headFragment (titulo='Cesta')">
+
+</head>
+<body>
+	<!--nav-->
+	<nav sec:authorize="hasAnyRole('ROLE_ADMIN')"
+		th:replace="admin/navAdmin :: navAdmin"></nav>
+	<nav sec:authorize="hasAnyRole('ROLE_USER')"
+		th:replace="user/navUser :: navUser"></nav>
+	<nav sec:authorize="!hasAnyRole('ROLE_ADMIN','ROLE_USER')"
+		th:replace="pagEstaticas/navBasic :: nav"></nav>
+	<!--Fin del nav-->
+
+	<!--Section-->
+	<section>
+		<div class="container-fluid pt-4">
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10 display-4 fondoVerde">
+					<div class="float-left">
+						<p>Cesta</p>
+					</div>
+					<div class="float-right ">
+
+						<button type="button" class="btn boton d-md-inline d-none"
+							onclick="volverAtras()">
+							Seguir comprando <i class="fa fa-arrow-right pl-1"
+								aria-hidden="true"></i>
+						</button>
+					</div>
+
+				</div>
+				<div class="col-1"></div>
+			</div>
+		</div>
+		<div sec:authorize="hasAnyRole('ROLE_USER')"
+			class="container-fluid mt-4">
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10  infoEnvioCesta p-2 rounded">
+					<div class="float-left pt-2">
+						<p class="font-weight-bold d-inline">Su pedido será enviado a
+						</p>
+						<span th:text="${usuarioLogged.direccionEnvio}">dirección</span> <span
+							th:text="${usuarioLogged.cpEnvio}">CP</span> <span
+							th:text="${usuarioLogged.localidadEnvio}">Localidad</span> <span
+							th:text="${usuarioLogged.provinciaEnvio}">Provincia</span>
+					</div>
+					<div class="float-right ">
+
+						<a href="../user/editarPerfil.html"
+							th:href="@{/user/editarperfil}" class="text-decoration-none">
+							<button type="button" class="btn btn-success d-md-inline d-none ">
+								Cambiar dirección de envío <i class="fa fa-arrow-right pl-1"
+									aria-hidden="true"></i>
+							</button>
+						</a>
+					</div>
+
+				</div>
+				<div class="col-1"></div>
+			</div>
+		</div>
+		<!--BLOQUE PARA MOSTRAR LOS PRODUCTOS AÑADIDOS-->
+		<div th:if="${pedido!= null}">
+			<div class="divCesta" th:each="lineapedido : ${pedido.linea}">
+				<div class="container-fluid mt-4">
+					<div class="row mt-4">
+						<div class="col-1 col-lg-2"></div>
+						<div class="col-lg-9 col-md-10 col-10 fondoBlanco">
+							<div class="row">
+								<div class="col-lg-2 col-3 mt-3 mb-3">
+									<img class="w-100" src="img/pruebaproducto.jpg" 
+									 th:src="${lineapedido.productoAnadido.fileUrl}"
+									 th:alt="${lineapedido.productoAnadido.nombre}"/>
+								</div>
+								<div class="col-lg-6 col-5 mt-4">
+									<p th:text="${lineapedido.productoAnadido.nombre}">Nombre
+										del producto</p>
+								</div>
+								<div class="col-lg-3 col-4 mt-4">
+									<p class="text-right"
+										th:text="|${#numbers.formatDecimal(lineapedido.precioUnidad * lineapedido.cantidad, 0, 'POINT', 2, 'COMMA')} €|">Precio
+										€</p>
+								</div>
+
+							</div>
+							<hr class="mt-0" />
+							<div class="row">
+								<div class="col-lg-5 col-md-5 col-9 mb-2">
+									<form name="cantidadToneladas"
+										th:action="@{/cesta/modificar/{id}  (id=${lineapedido.id})}"
+										method="POST" th:object="${lineaPedido}">
+										<select th:field="*{cantidad}"
+											class="float-left form-control col-6 col-lg-4" required>
+											<option th:value="'26'" th:text="26"
+												th:selected="${lineaPedido.cantidad==26}"></option>
+											<option th:value="'52'" th:text="52"
+												th:selected="${lineaPedido.cantidad==52}"></option>
+											<option th:value="'78'" th:text="78"
+												th:selected="${lineaPedido.cantidad==78}"></option>
+											<option th:value="'104'" th:text="104"
+												th:selected="${lineaPedido.cantidad==104}"></option>
+											<option th:value="'130'" th:text="130"
+												th:selected="${lineaPedido.cantidad==130}"></option>
+											<option th:value="'156'" th:text="156"
+												th:selected="${lineaPedido.cantidad==156}"></option>
+											<option th:value="'182'" th:text="182"
+												th:selected="${lineaPedido.cantidad==182}"></option>
+											<option th:value="'208'" th:text="208"
+												th:selected="${lineaPedido.cantidad==208}"></option>
+										</select>
+										<button class=" btn btn-success float-left ml-2" type="submit">
+											<i class="fas fa-shopping-basket text-center"
+												aria-hidden="true"></i>
+										</button>
+									</form>
+								</div>
+								<div class="col-lg-5 col-5 d-md-block d-none">
+									<p
+										th:text="|${lineapedido.cantidad} x ${lineapedido.precioUnidad} €/Tonelada|">
+										x €</p>
+								</div>
+								<div class="col-lg-2 col-2 text-right">
+									<a th:href="@{/cesta/borrar/{id} (id=${lineapedido.id})}"
+										class="btn bg-danger text-white"><i class="fa fa-trash"
+										aria-hidden="true"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-1"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div th:if="${pedido == null||pedido.linea==null||pedido.linea.isEmpty()}" class=" h-100">
+			<div class="container-fluid mt-4">
+				<div class="row mt-4">
+					<div class="col-1 col-lg-2"></div>
+					<div class="col-lg-9 col-md-10 col-10 fondoBlanco">
+						<p class="display-4 p-4 text-center">No hay nada en la cesta</p>
+					</div>
+					<div class="col-1"></div>
+
+				</div>
+			</div>
+		</div>
+		<!--MOSTRAR TOTAL-->
+		<div th:if="${pedido!= null&&pedido.linea!=null&&!pedido.linea.isEmpty()}">
+			<div class="divCestaR">
+				<div class="container-fluid mt-4 ">
+					<div class="row">
+						<div class="col-1 col-lg-1"></div>
+						<div class="col-lg-8 col-10 fondoBlanco ">
+							<div class="row pt-4">
+								<div class="col-6">
+									<p class="font-weight-bold">SubTotal:</p>
+								</div>
+								<div class="col-6">
+									<p class="text-right"
+										th:text="|${#numbers.formatDecimal(pedido.precioSubtotal, 0, 'POINT', 2, 'COMMA')} €|">Precio
+										€</p>
+								</div>
+							</div>
+							<div class="row fondoBlanco pt-2">
+								<div class="col-6">
+									<p class="font-weight-bold">Gastos de envío:</p>
+								</div>
+								<div class="col-6">
+									<p class="text-right"
+										th:text="|${#numbers.formatDecimal(pedido.precioTransporte, 0, 'POINT', 2, 'COMMA')} €|">Precio
+										€</p>
+								</div>
+							</div>
+							<div class="row fondoBlanco">
+								<div class="col-12">
+									<hr class="bg-success mt-2" />
+								</div>
+							</div>
+							<div class="row fondoBlanco">
+								<div class="col-6">
+									<p class="font-weight-bold">Total:</p>
+								</div>
+								<div class="col-6">
+									<p class="text-right"
+										th:text="|${#numbers.formatDecimal(pedido.precioTotal, 0, 'POINT', 2, 'COMMA')} €|">Precio
+										€</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-1"></div>
+
+					</div>
+					<div class="row">
+						<div class="col-1"></div>
+						<div class="col-lg-8 col-md-12 text-center">
+
+							<a href="pago.html"
+								th:href="@{/user/pago/{id} (id=${pedido.id})}">
+								<button type="button" class="btn btn-success my-3">
+									Tramitar pedido <i class="fa fa-arrow-right pl-1"
+										aria-hidden="true"></i>
+								</button>
+							</a>
+						</div>
+						<div class="col-1"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer th:replace="pagEstaticas/footer :: footer"> </footer>
+
+</body>
+</html>

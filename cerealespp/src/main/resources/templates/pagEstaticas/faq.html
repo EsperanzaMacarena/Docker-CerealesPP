@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="pagEstaticas/head :: headFragment (titulo='Preguntas frecuentes')">
+
+</head>
+<body>
+    <!--nav-->
+  	<nav sec:authorize="hasAnyRole('ROLE_ADMIN')" th:replace="admin/navAdmin :: navAdmin"></nav>
+  	<nav sec:authorize="hasAnyRole('ROLE_USER')" th:replace="user/navUser :: navUser"></nav>
+  	<nav sec:authorize="!hasAnyRole('ROLE_ADMIN','ROLE_USER')" th:replace="pagEstaticas/navBasic :: nav"> </nav>
+  <!--Fin del nav-->
+
+  <!--Section-->
+    <section>
+      <div class="container-fluid float-left">
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col-10 my-3 p-5 text-justify">
+            <h1 class="text-center mb-4 font-weight-bold">Preguntas frecuentes</h1>
+            <hr class="bg-success mb-5" />
+            
+            <h3 class="mt-5">¿Cuánta cantidad de producto puede comprar en Cereales Paco Pérez?</h3>
+            <hr class="bg-success" />
+            <p>La compra mínima son 26 toneladas por cereal, que es lo que se corresponde 
+              con la capacidad de un camión, hasta un máximo de 208 toneladas.</p>
+  
+            <h3 class="mt-5">¿Cuánto cuesta el envío de la mercancía?</h3>
+            <hr class="bg-success" />
+            <p>Cobramos 100€ por camión</p>
+  
+            <h3 class="mt-5">¿Cuánto tarda el envío?</h3>
+            <hr class="bg-success" />
+            <p>El envío se realizara en un plazo de 3 días y lo recibirá en los 3 días siguientes al envío</p>
+            <p>Su pedido estará actualizado sobre su estado en todo momento</p>
+            <h3 class="mt-5">¿Dónde realizan envíos?</h3>
+            <hr class="bg-success" />
+            <p>Enviamos a toda España</p>
+  
+            <h3 class="mt-5">¿Cómo puedo comunicar un problema con mi pedido?</h3>
+            <hr class="bg-success" />
+            <p>Puede contactar con nosotros en el apartado <a href="contactUs.html" th:href="@{/contactUs}">contacta con nosotros</a></p>
+            
+            <h3 class="mt-5">¿Puedo cancelar un pedido?</h3>
+            <hr class="bg-success" />
+            <p>Sí, siempre que sea antes de que se procese, a través del formulario de <a href="contactUs.html" th:href="@{/contactUs}">contacta con nosotros</a></p>
+  
+            <h3 class="mt-5">¿Puedo realizar un pedido mayor a 28 toneladas?</h3>
+            <hr class="bg-success" />
+            <p>Sí a través del formulario de <a href="contactUs.html" th:href="@{/contactUs}">contacta con nosotros</a></p>
+          </div>
+          <div class="col-1"></div>
+        </div>
+      </div>
+    </section>
+    <footer th:replace="pagEstaticas/footer :: footer">
+    </footer>
+</body>
+
+</html>

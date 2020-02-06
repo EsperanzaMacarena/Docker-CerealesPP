@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+
+</head>
+<body>
+	<!--nav-->
+	<nav th:fragment="navUser" class="navbar navbar-expand-lg navbar-dark">
+		<a class="navbar-brand" href="inicio.html" th:href="@{/}"> <img
+			class="img-fluid" src="../img/logoTrigo.png"
+			th:src="@{/img/logoTrigo.png}" th:alt="|Cereales Paco Pérez - Inicio|" alt="Cereales Paco Pérez - Inicio">
+			<h5 class="d-inline">Cereales Paco Pérez</h5>
+		</a>
+		<button class="navbar-toggler d-lg-none" type="button"
+			data-toggle="collapse" data-target="#collapsibleNavId"
+			aria-controls="collapsibleNavId" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="collapsibleNavId">
+			<div class="row w-100">
+				<div class="col-lg-2">
+					<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+						<li class="nav-item active"><a
+							class="nav-link font-weight-bold" href="inicio.html"
+							th:href="@{/}">Inicio</a></li>
+
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle text-white font-weight-bold"
+							href="#" id="dropdownId" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">Productos</a>
+							<div class="dropdown-menu" aria-labelledby="dropdownId">
+								<a class="dropdown-item" href="productosNoProcesados.html"
+									th:href="@{/noprocesados}">Cereales no procesados</a> <a
+									class="dropdown-item" href="productosProcesados.html"
+									th:href="@{/procesados}">Cereales procesados</a>
+							</div></li>
+					</ul>
+				</div>
+
+				<div class="col-lg-10 text-right">
+					<form class="form-inline my-2 my-lg-0 col-12 col-lg-4 float-left"
+						action="#" th:action="@{/buscar}" th:object="${buscarProducto}"
+						method="POST">
+						<input th:field="*{nombre}" class="form-control mr-sm-2 w-50"
+							type="text" placeholder="Buscar producto">
+						<button class="btn btn-success my-2 my-sm-0" type="submit">
+							<span class="fa fa-search" aria-hidden="true"></span>
+						</button>
+					</form>
+					<form th:action="@{/logout}" method="POST" id="logoutForm"></form>
+					<a href="#" onclick="enviar('logoutForm')" class="float-right">
+						<button type="button" class="btn btn-danger btn ml-2 ">Desconectar</button>
+					</a> <a href="cesta.html" th:href="@{/cesta}" class="float-right">
+						<button type="button" class="btn btn-success">
+							<span class="fas fa-shopping-basket text-center"> </span>
+						</button>
+					</a>
+
+					<div class="dropdown float-right mr-2 p-2">
+						<a id="dropdownUser" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"
+							th:text="|Bienvenido, ${usuarioLogged.nomEmpresa}|"
+							class="m-0 pt-2 text-white dropdown-toggle ">xxx</a>
+						<div class="dropdown-menu" aria-labelledby="dropdownUser">
+							<a class="dropdown-item " href="user/perfil.html"
+								th:href="@{/user/perfil}">Ver perfil</a> <a
+								class="dropdown-item" href="user/pedidos.html"
+								th:href="@{/user/pedidos}">Ver pedidos</a>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+	</nav>
+	<!--Fin del nav-->
+</body>
+</html>

@@ -1,0 +1,10 @@
+com.salesianostriana.cerealespp
+com.salesianostriana.cerealespp.config
+com.salesianostriana.cerealespp.controller
+com.salesianostriana.cerealespp.formbean
+com.salesianostriana.cerealespp.model
+com.salesianostriana.cerealespp.pdf
+com.salesianostriana.cerealespp.repository
+com.salesianostriana.cerealespp.security
+com.salesianostriana.cerealespp.service
+com.salesianostriana.cerealespp.storage

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="pagEstaticas/head :: headFragment (titulo='Sobre Cereales Paco Pérez')">
+
+</head>
+<body>
+  <!--nav-->
+ <nav sec:authorize="hasAnyRole('ROLE_ADMIN')" th:replace="admin/navAdmin :: navAdmin"></nav>
+ <nav sec:authorize="hasAnyRole('ROLE_USER')" th:replace="user/navUser :: navUser"></nav>
+ <nav sec:authorize="!hasAnyRole('ROLE_ADMIN','ROLE_USER')" th:replace="pagEstaticas/navBasic :: nav"> </nav>
+  	
+  <!--Fin del nav-->
+
+  <!--Section-->
+    <section>
+        <div class="container-fluid float-left">
+            <div class="row">
+              <div class="col-1"></div>
+              <div class="col-10 my-3 p-5 text-justify">
+                <h1 class="text-center mb-4 font-weight-bold">Sobre Cereales Paco Pérez</h1>
+                <hr class="bg-success mb-5" />
+                <p>Cereales Paco Pérez opera en el sector agroalimentario
+                  desde hace más de 30 años. Nuestra actividad se basa en la
+                  elaboración de harinas, cereales y legumbres.
+                </p>
+              </div>
+              <div class="col-1"></div>
+            </div>
+          </div>
+    </section>
+    <footer th:replace="pagEstaticas/footer :: footer">
+    </footer>
+</body>
+<!--JQUERY-->
+</html>

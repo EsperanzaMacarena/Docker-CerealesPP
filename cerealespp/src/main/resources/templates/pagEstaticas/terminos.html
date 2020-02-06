@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head
+	th:replace="pagEstaticas/head :: headFragment (titulo='Términos y condiciones')">
+
+</head>
+<body>
+	<!--nav-->
+	<nav sec:authorize="hasAnyRole('ROLE_ADMIN')"
+		th:replace="admin/navAdmin :: navAdmin"></nav>
+	<nav sec:authorize="hasAnyRole('ROLE_USER')"
+		th:replace="user/navUser :: navUser"></nav>
+	<nav sec:authorize="!hasAnyRole('ROLE_ADMIN','ROLE_USER')"
+		th:replace="pagEstaticas/navBasic :: nav"></nav>
+	<!--Fin del nav-->
+	<!--Section-->
+	<section>
+		<div class="container-fluid float-left">
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10 my-3 p-5 text-justify">
+					<h1 class="text-center mb-4 font-weight-bold">Términos de uso</h1>
+					<hr class="bg-success mb-5" />
+					<p>Te informamos que cerealespacoperez.com es un dominio de
+						Internet y marca registrada por la mercantil CEREALES PACO PÉREZ
+						TECNOLOGÍAS AGRARIAS, S.L., domiciliada en Calle Rodrigo Caro 2,
+						Utrera (Sevilla), España con NIF número S-96.859.897.</p>
+
+					<p>Teléfono: 954 199 240</p>
+
+					e-mail: cerealespacoperez@gmail.com
+
+					<h3 class="mt-5">Aceptación de las condiciones de uso</h3>
+					<hr class="bg-success" />
+					<p>Tanto la navegación como la utilización de los servicios
+						ofrecidos en esta página web (en adelante, la “Página Web” o
+						“Web”) le atribuye a Ud. la condición de usuario (en adelante,
+						“Usuario”) y supone su aceptación plena y sin reservas de todas y
+						cada una de las condiciones de uso vigentes en el momento en que
+						Ud. como Usuario acceda a la Página Web (en adelante, las
+						“Condiciones de Uso”).</p>
+
+					<h3 class="mt-5">Utilización de la Página Web</h3>
+					<hr class="bg-success" />
+					<p>El Usuario se compromete a utilizar la Página Web de
+						conformidad con la ley, con estas Condiciones de Uso, con la moral
+						y buenas costumbres generalmente aceptadas y con el orden público,
+						respondiendo frente CEREALES PACO PÉREZ, S.L o frente a terceros
+						de cualesquiera daños y perjuicios que pudieran causarse como
+						consecuencia del incumplimiento de dicha obligación.</p>
+					<p>El Usuario se abstendrá de utilizar la Página Web con fines
+						o efectos ilícitos, contrarios a lo establecido en estas
+						Condiciones de Uso, lesivos de los derechos e intereses de
+						terceros, o que de cualquier forma puedan dañar, inutilizar,
+						sobrecargar o deteriorar la Página Web o el servidor en la que
+						está alojada o impedir su normal utilización o disfrute.</p>
+
+					<p>Igualmente, el Usuario se abstendrá de incluir en la Página
+						Web cualquier hiperenlace (en adelante, “link”) dirigido a una
+						página web que contenga información o contenidos ilícitos,
+						contrarios a la moral y buenas costumbres generalmente aceptadas y
+						al orden público.</p>
+					<p>Los servicios que componen la red de servicios
+						cerealespacoperez.com para los Usuarios son los que en cada
+						momento sean ofertados en la Página Web. Algunos de los servicios
+						ofertados requieren el previo registro del usuario, para cuya
+						utilización deberá darse de alta como usuario de
+						cerealespacoperez.com.</p>
+					<p>Con la finalidad de ofrecerle el mejor servicio a través de
+						esta página y con el objeto de facilitar su uso, se analizan el
+						número de páginas visitadas, el número de visitas, así como la
+						actividad de los visitantes de la web y su frecuencia de
+						utilización.</p>
+
+					<h3 class="mt-5">Condiciones de venta de los productos</h3>
+					<hr class="bg-success" />
+					<p>Los precios de los productos que aparecen en pantalla
+						incluyen ya Impuesto sobre el Valor Añadido (IVA).</p>
+
+					<h3 class="mt-5">Modificación, suspensión y terminación de la
+						Página Web</h3>
+					<hr class="bg-success" />
+					<p>CEREALES PACO PÉREZ se reserva el derecho de dejar de
+						prestar todo o parte de los servicios que integran la red,
+						bastando para ello comunicarlo en la pantalla de acceso al
+						servicio. Se reserva, así mismo, el derecho de modificar
+						unilateralmente, en cualquier momento y sin previo aviso, la
+						presentación, configuración y contenidos de la Página Web, así
+						como las condiciones requeridas para utilizar la Página Web y las
+						presentes Condiciones de Uso, o introducir nuevas. Dichas
+						modificaciones serán de aplicación a partir de su publicación en
+						la Página Web.</p>
+
+					<h3 class="mt-5">Obligaciones del Usuario</h3>
+					<hr class="bg-success" />
+					<p>Con carácter general, el Usuario se obliga al cumplimiento
+						de las presentes Condiciones de Uso, así como cumplir las
+						especiales advertencias o instrucciones de uso contenidas en las
+						mismas o en la Página Web y obrar siempre conforme a la ley, a las
+						buenas costumbres y a las exigencias de la buena fe, empleando la
+						diligencia adecuada a la naturaleza del servicio del que disfruta,
+						absteniéndose de utilizar la Página Web de cualquier forma que
+						pueda impedir, dañar o deteriorar el normal funcionamiento de la
+						misma, los bienes o derechos de CEREALES PACO PÉREZ, sus
+						proveedores, el resto de Usuarios o en general de cualquier
+						tercero.</p>
+					<p>Concretamente, y sin que ello implique restricción alguna a
+						la obligación asumida por el Usuario con carácter general de
+						conformidad con el párrafo anterior, el Usuario se obliga, en la
+						utilización de la Página Web a:</p>
+					<ul>
+						<li>en el caso de registrarse, el Usuario se obliga a
+							proporcionar verazmente los datos proporcionados y a mantenerlos
+							actualizados;</li>
+						<li>no introducir, almacenar o difundir mediante la Página
+							Web ningún programa de ordenador, datos, virus, código, equipo de
+							hardware o de telecomunicaciones o cualquier otro instrumento o
+							dispositivo electrónico o físico que sea susceptible de causar
+							daños en la Página Web, en cualquiera de los servicios ofertados
+							en la Página Web, o en cualquiera de los equipos, sistemas o
+							redes de CEREALES PACO PÉREZ, de cualquier Usuario, de sus
+							proveedores o en general de cualquier tercero, o que de cualquier
+							otra forma sea capaz de causarles cualquier tipo de alteración o
+							impedir el normal funcionamiento de los mismos;</li>
+						<li>a custodiar adecuadamente el login y la password que le
+							sea facilitada por CEREALES PACO PÉREZ a los Usuarios, como
+							elementos identificadores y habilitadores para el acceso a los
+							servicios ofertados en la Página Web, comprometiéndose a no ceder
+							su uso ni a permitir el acceso a ellos de terceros, asumiendo la
+							responsabilidad por los daños y perjuicios que pudieran derivarse
+							de un uso indebido de los mismos. Igualmente el Usuario se
+							compromete a comunicar a CEREALES PACO PÉREZ, con la mayor
+							rapidez, su pérdida o robo así como cualquier riesgo de acceso al
+							login y/o password por un tercero;</li>
+						<li>no realizar actividades publicitarias, promocionales o de
+							explotación comercial a través de la Página Web no autorizadas
+							expresamente por CEREALES PACO PÉREZ, ni utilizar los contenidos
+							y en particular la información obtenida a través de la Página Web
+							para remitir publicidad, enviar mensajes con fines de venta
+							directa o con cualquier otro fin comercial, ni para recoger o
+							almacenar datos personales de terceros;</li>
+						<li>no realizar actividades publicitarias, promocionales o de
+							explotación comercial a través de la Página Web no autorizadas
+							expresamente por CEREALES PACO PÉREZ, ni utilizar los contenidos
+							y en particular la información obtenida a través de la Página Web
+							para remitir publicidad, enviar mensajes con fines de venta
+							directa o con cualquier otro fin comercial, ni para recoger o
+							almacenar datos personales de terceros;</li>
+						<li>no utilizar identidades falsas, ni suplantar la identidad
+							de otros en la utilización de la página web o en la utilización
+							de cualquiera de los servicios de la Página Web, incluyendo la
+							utilización en su caso de contraseñas o claves de acceso de
+							terceros o de cualquier otra forma;</li>
+						<li>no destruir, alterar, utilizar para su uso, inutilizar o
+							dañar los datos, informaciones, programas o documentos
+							electrónicos de CEREALES PACO PÉREZ, sus proveedores o terceros;
+						</li>
+						<li>no introducir, almacenar o difundir mediante la Página
+							Web cualquier contenido que infrinja derechos de propiedad
+							intelectual, industrial o secretos empresariales de terceros, ni
+							en general ningún contenido del cual no ostentara, de conformidad
+							con la ley, el derecho a ponerlo a disposición de tercero;</li>
+						<li>no reproducir, duplicar, vender o explotar para fines
+							comerciales cualquier contenido de la Página Web;</li>
+						<li>no realizar actividades que constituyan una infracción de
+							la regulación sobre propiedad intelectual e industrial o
+							cualquier otra norma del ordenamiento jurídico aplicable.</li>
+
+					</ul>
+
+					<p>CEREALES PACO PÉREZ podrá interrumpir el servicio o resolver
+						de modo inmediato la relación con el Usuario si detecta un uso de
+						su portal o de cualquiera de los servicios ofertados en el mismo
+						contrario a las presentes Condiciones de Uso.</p>
+
+					<p>Toda la información que facilite el Usuario a través de los
+						formularios del Sitio Web deberá ser veraz. A estos efectos, el
+						Usuario garantiza la autenticidad de todos aquellos datos que
+						comunique y mantendrá la información facilitada a CEREALES PACO
+						PÉREZ perfectamente actualizada de forma que responda, en todo
+						momento, a la situación real del Usuario. En todo caso será el
+						Usuario el único responsable de las manifestaciones falsas o
+						inexactas que realice y de los perjuicios que cause a CEREALES
+						PACO PÉREZ o a terceros por la información que facilite.</p>
+
+					<h3 class="mt-5">Limitación de responsabilidad</h3>
+					<hr class="bg-success" />
+					<p>CEREALES PACO PÉREZ únicamente responderá de los daños que
+						el Usuario pueda sufrir como consecuencia de la utilización de la
+						Página Web, cuando dichos daños le sean directamente imputables.</p>
+
+					<p>El Usuario reconoce y acepta que la utilización de la Página
+						Web, así como la utilización de los servicios, se realiza bajo su
+						entero riesgo y responsabilidad.</p>
+
+					<p>Todas las noticias, recomendaciones, artículos, comentarios
+						y/u opiniones presentados en CEREALES PACO PÉREZ.com representan
+						las opiniones de sus autores exclusivamente. Estos textos no
+						representan las opiniones de CEREALES PACO PÉREZ en relación a los
+						sectores que trata el portal, o en cualquier otro sentido, por lo
+						que no se responsabiliza de su contenido, legalidad ni reclamación
+						al respecto.</p>
+
+					<p>En cuanto a las informaciones y contenidos incluidos en la
+						Página Web o a los que pudiera tenerse acceso como consecuencia de
+						los links establecidos en la misma, CEREALES PACO PÉREZ no
+						garantiza, en modo alguno, ni el acceso en un momento determinado
+						a tales informaciones y contenidos, ni su exactitud, ni su
+						actualidad o actualización, ni su idoneidad o utilidad para los
+						fines del Usuario, no haciéndose responsable de los daños y
+						perjuicios de cualquier naturaleza que puedan deberse a la
+						transmisión, difusión, almacenamiento, puesta a disposición,
+						recepción, obtención o acceso a los contenidos incluidos en la
+						Página Web o aquellas a las que se tenga acceso como consecuencia
+						de los links establecidos en la misma.</p>
+
+					<p>CEREALES PACO PÉREZ está exenta de cualquier responsabilidad
+						por los daños y perjuicios de cualquier naturaleza que pueda
+						ocasionar la información o contenidos incluidos en la Página Web o
+						a los que pueda accederse como consecuencia de los links
+						establecidos en la misma, así como de los productos adquiridos a
+						través de su plataforma.</p>
+
+					<p>CEREALES PACO PÉREZ está exenta de cualquier responsabilidad
+						por el uso indebido o no autorizado del login y del password y por
+						la falta de diligencia del Usuario en la conservación del secreto
+						de los mismos.</p>
+
+					<p>CEREALES PACO PÉREZ está exenta de cualquier responsabilidad
+						por los daños y perjuicios de cualquier naturaleza que puedan
+						deberse, con carácter meramente enunciativo y no limitativo, a</p>
+					<ul>
+						<li>la presencia de virus u otros elementos lesivos en la
+							Página Web, o páginas web a las que se pueda tener acceso a
+							través de los links establecidos en aquélla que puedan producir
+							alteraciones en el sistema informático, documentos electrónicos o
+							ficheros de los Usuarios.</li>
+						<li>inferencias, omisiones, interrupciones, averías y/o
+							desconexiones en el funcionamiento operativo de este sistema
+							electrónico o en los aparatos y equipos informáticos de los
+							Usuarios, motivadas por causas ajenas a CEREALES PACO PÉREZ, que
+							impidan o retrasen la prestación de los servicios o la navegación
+							por el sistema.</li>
+						<li>retrasos o bloqueos en el uso causados por deficiencias o
+							sobrecargas de Internet o en otros sistemas electrónicos.</li>
+						<li>que puedan ser causados por terceras personas mediante
+							intromisiones ilegítimas fuera del control de la Página Web y que
+							no sean atribuibles a CEREALES PACO PÉREZ.</li>
+						<li>las divergencias de la información, documentación y/o
+							demás contenido de la Página Web que pudieren existir entre la
+							versión electrónica y la versión impresa.</li>
+						<li>la imposibilidad de dar el servicio o permitir el acceso
+							por causas no imputables a CEREALES PACO PÉREZ, debidas al
+							Usuario, a terceros, o a supuestos de fuerza mayor.</li>
+					</ul>
+					<p>CEREALES PACO PÉREZ ha adoptado todas las medidas de
+						seguridad a su alcance para la protección de los datos personales
+						suministrados por el Usuario. No obstante, CEREALES PACO PÉREZ no
+						puede garantizar la invulnerabilidad absoluta de sus sistemas de
+						seguridad, ni puede garantizar la seguridad o inviolabilidad de
+						dichos datos en su transmisión a través de Internet. En
+						consecuencia, tampoco responderá en caso de que un tercero,
+						quebrantando las medidas de seguridad establecidas por CEREALES
+						PACO PÉREZ, acceda a los mensajes o los utilice para la remisión
+						de virus informáticos.</p>
+
+					<h3 class="mt-5">Propiedad intelectual e industrial</h3>
+					<hr class="bg-success" />
+					<p>Todos los contenidos de la Página Web, entendiendo por éstos
+						a título meramente enunciativo, los diseños, software, marcas,
+						nombres, imágenes, logos, gráficos, iconos, aplicaciones y demás
+						contenidos multimedia audiovisuales y sonoros así como su diseño
+						gráfico y código fuente, son titularidad de CEREALES PACO PÉREZ o
+						de terceros que han autorizado a CEREALES PACO PÉREZ su inclusión
+						y utilización en la Página Web, gozando en consecuencia de la
+						protección propia prevista por la normativa aplicable sobre la
+						propiedad industrial e intelectual. En ningún caso el acceso a la
+						Página Web implica la cesión por parte de agroterrra de tales
+						derechos a los Usuarios.</p>
+
+					<h3 class="mt-5">Bloqueos de cuentas de usuario por Cereales
+						Paco Pérez:</h3>
+					<hr class="bg-success" />
+					<p>CEREALES PACO PÉREZ se reserva el derecho a bloquear a un
+						usuario de la Página Web por motivos de morosidad.</p>
+
+					<p>Sobre los bloqueos:</p>
+					<ul>
+						<li>La decisión sobre si el bloqueo es definitiva o temporal
+							(24 horas, tres días, una semana o el tiempo que proceda) depende
+							de la gravedad de los hechos. El bloqueo de un usuario del foro
+							recae sobre su persona, y no sólo sobre su nick.</li>
+						<li>Siempre que un usuario sea bloqeueado será notificado del
+							motivo a través de un mensaje a su correo electrónico. En dicho
+							mensaje se le informará también de la duración del bloqueo en
+							caso de que éste sea temporal.</li>
+					</ul>
+
+				</div>
+				<div class="col-1"></div>
+			</div>
+		</div>
+	</section>
+	<!--ABOUT US TERMS FAQ-->
+	<footer th:replace="pagEstaticas/footer :: footer"> </footer>
+	<!--JQUERY-->
+</body>
+</html>

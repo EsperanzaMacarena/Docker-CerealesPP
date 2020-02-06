@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="pagEstaticas/head :: headFragment (titulo='Editar perfil')">
+
+</head>
+<body>
+	<!--nav-->
+	<nav th:replace="/user/navUser :: navUser"></nav>
+	<!--Fin del nav-->
+
+	<aside class="float-left col-lg-2 p-0 subNav">
+		<div class="container-fluid col-lg-12 col-12 p-0 float-left subNav">
+			<nav class="nav nav-stacked text-center subNav">
+				<a class="nav-link col-lg-12 col-md-6 col-6 boton  p-4 rounded-0"
+					href="#" th:href="@{/user/perfil}">Ver perfil</a> <a
+					class="nav-link col-lg-12 col-md-6 col-6 p-4 rounded-0"
+					href="pedidos.html" th:href="@{/user/pedidos}">Ver pedidos</a>
+			</nav>
+		</div>
+	</aside>
+	<!--Section-->
+	<section class="float-left col-12 col-lg-10">
+
+		<div class="container-fluid mt-4">
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10 display-4 fondoVerde">
+					<div class="float-left">
+						<p>Editar perfil</p>
+					</div>
+				</div>
+				<div class="col-1"></div>
+			</div>
+		</div>
+		<div class="container-fluid ">
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10">
+					<div class="row">
+						<div class="col-12">
+							<a href="perfil.html"
+								class=" text-decoration-none text-dark btn  mt-2 font-weight-bold boton"
+								role="button" th:href="@{/user/perfil}"><i class="fa fa-arrow-left" aria-hidden="true" ></i>
+								Volver al Perfil </a> 
+								<a
+								class="btn btn-success border-success mt-2 float-right font-weight-bold"
+								onclick="validarFormularioEditarPerfil()" href="#">Guardar</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-1"></div>
+			</div>
+		</div>
+		<div class="container-fluid mt-5">
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10 p-0">
+
+					<!--FORMULARIO SIGN UP-->
+					<form class="form-horizontal" name="editarPerfil" id="editarPerfil"
+						th:action="@{/user/editarperfil/submit}" method="POST"
+						th:object="${usuarioLogged}" action="#">
+						<fieldset class="col-lg-4 col-md-12 float-left ">
+							<legend>Datos de la cuenta</legend>
+							<input th:field="*{password}" type="hidden">
+							<input th:field="*{id}" id="id" name="id" class="form-control"
+								required type="hidden">
+							<div class="form-group">
+								<label class="col-12 control-label" for="nombreEmpresa">Razón
+									social<span class="text-danger font-weight-bold">*</span>
+								</label>
+								<div class="col-10 inputGroupContainer">
+									<div class="input-group">
+										<input th:field="*{nomEmpresa}" id="nombreEmpresa"
+											name="nomEmpresa" placeholder="Nombre de la empresa"
+											class="form-control" required type="text">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-12 control-label" for="cif">CIF<span
+									class="text-danger font-weight-bold">*</span></label>
+								<div class="col-10 inputGroupContainer">
+									<div class="input-group">
+										<input th:field="*{cif}" id="cif" name="cif"
+											placeholder="CIF de la empresa" class="form-control" required
+											onblur="comprobarCif(this)" type="text">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-12 control-label ">Nombre de contacto<span
+									class="text-danger font-weight-bold">*</span></label>
+								<div class="col-10 inputGroupContainer">
+									<div class="input-group">
+										<input th:field="*{nombre}" id="contactoN" name="contactoN"
+											placeholder="Nombre de un contacto" class="form-control"
+											required type="text">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-12 control-label">Apellidos de
+									contacto<span class="text-danger font-weight-bold">*</span>
+								</label>
+								<div class="col-10 inputGroupContainer">
+									<div class="input-group">
+										<input th:field="*{apellidos}" id="contactoA" name="contacto"
+											placeholder="Apellidos de un contacto" class="form-control"
+											required type="text">
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-12 control-label">Email<span
+									class="text-danger font-weight-bold">*</span></label>
+								<div class="col-10 inputGroupContainer">
+									<div class="input-group">
+										<input th:field="*{email}" id="email" name="email"
+											placeholder="Email" class="form-control" required
+											type="email">
+									</div>
+								</div>
+							</div>
+
+
+						</fieldset>
+						<fieldset class="col-lg-4 col-md-12 float-left">
+							<legend>Dirección social</legend>
+
+							<div class="form-group">
+								<label class="col-12 control-label">Dirección<span
+									class="text-danger font-weight-bold">*</span></label>
+								<div class="col-10 inputGroupContainer">
+									<div class="input-group">
+										<input th:field="*{direccionSocial}" id="direccion"
+											name="direccion"
+											placeholder="Calle, Avenida, Polígono, nº,.."
+											class="form-control" required type="text">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-6">Localidad<span
+									class="text-danger font-weight-bold">*</span></label>
+								<div class="col-10 inputGroupContainer">
+									<div class="input-group">
+										<input th:field="*{LocalidadSocial}" id="city" name="city"
+											placeholder="Localidad" class="form-control w-75" required
+											type="text">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class=" control-label col-6">Código Postal<span
+									class="text-danger font-weight-bold">*</span></label>
+								<div class="inputGroupContainer col-4">
+									<div class="input-group">
+										<input th:field="*{cpSocial}" id="postcode" name="postcode"
+											maxlength="5" placeholder="Código postal"
+											class="form-control p-2" required type="text"
+											onblur="comprobarCodigoPostal(this)">
+									</div>
+								</div>
+							</div>
+							<div class="form-group col-10">
+								<label class="control-label">Provincia<span
+									class="text-danger font-weight-bold">*</span></label> <select
+									th:field="*{provinciaSocial}" class="form-control col-11"
+									id="busqueda_provincia" required>
+									<option value='Álava'>Álava</option>
+									<option value='Albacete'>Albacete</option>
+									<option value='Alicante'>Alicante/Alacant</option>
+									<option value='Almería'>Almería</option>
+									<option value='Asturias'>Asturias</option>
+									<option value='Ávila'>Ávila</option>
+									<option value='Badajoz'>Badajoz</option>
+									<option value='Barcelona'>Barcelona</option>
+									<option value='Burgos'>Burgos</option>
+									<option value='Cáceres'>Cáceres</option>
+									<option value='Cádiz'>Cádiz</option>
+									<option value='Cantabria'>Cantabria</option>
+									<option value='Castellón'>Castellón/Castelló</option>
+									<option value='Ceuta'>Ceuta</option>
+									<option value='Ciudad Real'>Ciudad Real</option>
+									<option value='Córdoba'>Córdoba</option>
+									<option value='Cuenca'>Cuenca</option>
+									<option value='Girona'>Girona</option>
+									<option value='las Palmas'>Las Palmas</option>
+									<option value='Granada'>Granada</option>
+									<option value='Guadalajara'>Guadalajara</option>
+									<option value='Guipúzcoa'>Guipúzcoa</option>
+									<option value='Huelva'>Huelva</option>
+									<option value='Huesca'>Huesca</option>
+									<option value='Illes Balears'>Illes Balears</option>
+									<option value='Jaén'>Jaén</option>
+									<option value='A Coruña'>A Coruña</option>
+									<option value='La Rioja'>La Rioja</option>
+									<option value='León'>León</option>
+									<option value='Lleida'>Lleida</option>
+									<option value='Lugo'>Lugo</option>
+									<option value='Madrid'>Madrid</option>
+									<option value='Málaga'>Málaga</option>
+									<option value='Melilla'>Melilla</option>
+									<option value='Murcia'>Murcia</option>
+									<option value='Navarra'>Navarra</option>
+									<option value='Ourense'>Ourense</option>
+									<option value='Palencia'>Palencia</option>
+									<option value='Pontevedra'>Pontevedra</option>
+									<option value='Salamanca'>Salamanca</option>
+									<option value='Segovia'>Segovia</option>
+									<option value='Sevilla'>Sevilla</option>
+									<option value='Soria'>Soria</option>
+									<option value='Tarragona'>Tarragona</option>
+									<option value='Santa Cruz Tenerife'>Santa Cruz de
+										Tenerife</option>
+									<option value='Teruel'>Teruel</option>
+									<option value='Toledo'>Toledo</option>
+									<option value='Valencia'>Valencia/Valéncia</option>
+									<option value='Valladolid'>Valladolid</option>
+									<option value='Vizcaya'>Vizcaya</option>
+									<option value='Zamora'>Zamora</option>
+									<option value='Zaragoza'>Zaragoza</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label class="col-6 control-label">Télefono<span
+									class="text-danger font-weight-bold">*</span></label>
+								<div class="input-group col-10">
+									<input th:field="*{telefono}" id="telefono" name="telefono"
+										placeholder="Teléfono" onblur="comprobarTelefono(this)"
+										class="form-control" required type="tel">
+								</div>
+							</div>
+
+						</fieldset>
+						<fieldset class="col-lg-4 col-md-12 float-left">
+							<legend>Dirección de envío</legend>
+
+							<div class="form-group">
+								<label class="col-12 control-label">Dirección<span
+									class="text-danger font-weight-bold">*</span></label>
+								<div class="col-10 inputGroupContainer">
+									<div class="input-group">
+										<input th:field="*{direccionEnvio}" id="direccion"
+											name="direccion"
+											placeholder="Calle, Avenida, Polígono, nº,.."
+											class="form-control" required type="text">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-6">Localidad<span
+									class="text-danger font-weight-bold">*</span></label>
+								<div class="col-10 inputGroupContainer">
+									<div class="input-group">
+										<input th:field="*{localidadEnvio}" id="city" name="city"
+											placeholder="Localidad" class="form-control w-75" required
+											type="text">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class=" control-label col-6">Código Postal<span
+									class="text-danger font-weight-bold">*</span></label>
+								<div class="inputGroupContainer col-4">
+									<div class="input-group">
+										<input th:field="*{cpEnvio}" id="postcode2" name="postcode2"
+											maxlength="5" onblur="comprobarCodigoPostal(this)"
+											placeholder="Código postal" class="form-control p-2" required
+											type="text">
+									</div>
+								</div>
+							</div>
+							<div class="form-group col-10">
+								<label class="control-label">Provincia<span
+									class="text-danger font-weight-bold">*</span></label> <select
+									class="form-control col-11" th:field="*{provinciaEnvio}"
+									id="busqueda_provincia" required>
+									<option value='Álava'>Álava</option>
+									<option value='Albacete'>Albacete</option>
+									<option value='Alicante'>Alicante/Alacant</option>
+									<option value='Almería'>Almería</option>
+									<option value='Asturias'>Asturias</option>
+									<option value='Ávila'>Ávila</option>
+									<option value='Badajoz'>Badajoz</option>
+									<option value='Barcelona'>Barcelona</option>
+									<option value='Burgos'>Burgos</option>
+									<option value='Cáceres'>Cáceres</option>
+									<option value='Cádiz'>Cádiz</option>
+									<option value='Cantabria'>Cantabria</option>
+									<option value='Castellón'>Castellón/Castelló</option>
+									<option value='Ceuta'>Ceuta</option>
+									<option value='Ciudad Real'>Ciudad Real</option>
+									<option value='Córdoba'>Córdoba</option>
+									<option value='Cuenca'>Cuenca</option>
+									<option value='Girona'>Girona</option>
+									<option value='las Palmas'>Las Palmas</option>
+									<option value='Granada'>Granada</option>
+									<option value='Guadalajara'>Guadalajara</option>
+									<option value='Guipúzcoa'>Guipúzcoa</option>
+									<option value='Huelva'>Huelva</option>
+									<option value='Huesca'>Huesca</option>
+									<option value='Illes Balears'>Illes Balears</option>
+									<option value='Jaén'>Jaén</option>
+									<option value='A Coruña'>A Coruña</option>
+									<option value='La Rioja'>La Rioja</option>
+									<option value='León'>León</option>
+									<option value='Lleida'>Lleida</option>
+									<option value='Lugo'>Lugo</option>
+									<option value='Madrid'>Madrid</option>
+									<option value='Málaga'>Málaga</option>
+									<option value='Melilla'>Melilla</option>
+									<option value='Murcia'>Murcia</option>
+									<option value='Navarra'>Navarra</option>
+									<option value='Ourense'>Ourense</option>
+									<option value='Palencia'>Palencia</option>
+									<option value='Pontevedra'>Pontevedra</option>
+									<option value='Salamanca'>Salamanca</option>
+									<option value='Segovia'>Segovia</option>
+									<option value='Sevilla'>Sevilla</option>
+									<option value='Soria'>Soria</option>
+									<option value='Tarragona'>Tarragona</option>
+									<option value='Santa Cruz Tenerife'>Santa Cruz de
+										Tenerife</option>
+									<option value='Teruel'>Teruel</option>
+									<option value='Toledo'>Toledo</option>
+									<option value='Valencia'>Valencia/Valéncia</option>
+									<option value='Valladolid'>Valladolid</option>
+									<option value='Vizcaya'>Vizcaya</option>
+									<option value='Zamora'>Zamora</option>
+									<option value='Zaragoza'>Zaragoza</option>
+								</select>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+				<div class="col-1"></div>
+			</div>
+		</div>
+	</section>
+	<footer th:replace="pagEstaticas/footer :: footer"> </footer>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head
+	th:replace="pagEstaticas/head :: headFragment (titulo='Productos')">
+
+</head>
+<body>
+	<!--nav-->
+	<nav sec:authorize="hasAnyRole('ROLE_ADMIN')"
+		th:replace="admin/navAdmin :: navAdmin"></nav>
+	<nav sec:authorize="hasAnyRole('ROLE_USER')"
+		th:replace="user/navUser :: navUser"></nav>
+	<nav sec:authorize="!hasAnyRole('ROLE_ADMIN','ROLE_USER')"
+		th:replace="pagEstaticas/navBasic :: nav"></nav>
+	<!--Fin del nav-->
+
+	<!--Section-->
+	<section>
+
+		<div class="container-fluid py-3">
+			<div class="row">
+
+				<div
+					class="card col-lg-6 col-sm-6 mt-2 mb-2 float-left border border-0"
+					th:each="p : ${p}">
+					<div class="row">
+						<div class="col-md-2 card-img">
+							<img src="img/pruebaproducto.jpg" th:src="${p.fileUrl}"
+								class="w-100" th:alt="${p.nombre}">
+						</div>
+						<div class="col-md-10 px-3">
+							<div class="card-block px-3 col-lg-6 float-left">
+								<h4 class="card-title mt-2" th:text="${p.nombre}">xxxxxxxxxx</h4>
+								<p class="card-text" th:text="|${#numbers.formatDecimal(p.precio, 0, 'POINT', 2, 'COMMA')} € /Tonelada|">xxxx
+								</p>
+
+							</div>
+							<div class="card-block px-3 col-lg-6 float-left mt-2">
+								<p>Número de toneladas:</p>
+								<form name="cantidadToneladas"
+									th:action="@{/producto/cesta/{id}  (id=${p.id})}" method="POST"
+									th:object="${lineaPedido}">
+									<select th:field="*{cantidad}"
+										class="float-left form-control col-6 col-lg-4" required>
+										<option th:value="'26'" th:text="26"></option>
+										<option th:value="'52'" th:text="52"></option>
+										<option th:value="'78'" th:text="78"></option>
+										<option th:value="'104'" th:text="104"></option>
+										<option th:value="'130'" th:text="130"></option>
+										<option th:value="'156'" th:text="156"></option>
+										<option th:value="'182'" th:text="182"></option>
+										<option th:value="'208'" th:text="208"></option>
+									</select>
+									<button sec:authorize="hasAnyRole('ROLE_USER')"
+										class=" btn btn-success float-left ml-2" type="submit">
+										<i class="fas fa-shopping-basket text-center"
+											aria-hidden="true"></i>
+									</button>
+									<a sec:authorize="!hasAnyRole('ROLE_ADMIN','ROLE_USER')"
+										class=" btn btn-success float-left ml-2" th:href="@{/signup}"
+										onclick="avisarRegistrarParaComprar()"> <i
+										class="fas fa-shopping-basket text-center" aria-hidden="true"></i>
+									</a>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</section>
+	<footer th:replace="pagEstaticas/footer :: footer"> </footer>
+</body>
+</html>

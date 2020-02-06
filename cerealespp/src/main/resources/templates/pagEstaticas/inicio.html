@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head
+	th:replace="pagEstaticas/head :: headFragment (titulo='Cereales Paco Pérez - Inicio')">
+
+</head>
+<body>
+	<!--nav-->
+	<nav sec:authorize="hasAnyRole('ROLE_ADMIN')"
+		th:replace="admin/navAdmin :: navAdmin"></nav>
+	<nav sec:authorize="hasAnyRole('ROLE_USER')"
+		th:replace="user/navUser :: navUser"></nav>
+	<nav sec:authorize="!hasAnyRole('ROLE_ADMIN','ROLE_USER')"
+		th:replace="pagEstaticas/navBasic :: nav"></nav>
+	<!--Fin del nav-->
+
+	<!--Section-->
+	<section>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12 p-0 w-100 my-0 mx-auto">
+					<div class="caroussel">
+						<div id="demo" class="carousel slide" data-ride="carousel">
+							<ul class="carousel-indicators">
+								<li data-target="#demo" data-slide-to="0" class="active"></li>
+								<li data-target="#demo" data-slide-to="1"></li>
+
+							</ul>
+							<div class="carousel-inner rounded-sm">
+								<div class="carousel-item active">
+									<a href="productosNoProcesados.html"
+										th:href="@{noprocesados}">
+										<div id="img1"></div>
+										<div class="carousel-caption rounded-sm">
+											<h3>Productos no procesados</h3>
+											<p>Compra cereal no procesado de la mejor calidad al
+												mejor precio</p>
+										</div>
+									</a>
+								</div>
+								<div class="carousel-item float-left">
+									<a href="productosProcesados.html"
+										th:href="@{/procesados}">
+										<div id="img2"></div>
+										<div class="carousel-caption rounded-sm">
+											<h3>Productos procesados</h3>
+											<p>Compra cereal procesado de la mejor calidad al mejor
+												precio</p>
+										</div>
+									</a>
+								</div>
+
+								<a class="carousel-control-prev" href="#demo" data-slide="prev">
+									<span class="carousel-control-prev-icon"></span>
+								</a> <a class="carousel-control-next" href="#demo" data-slide="next">
+									<span class="carousel-control-next-icon"></span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer th:replace="pagEstaticas/footer :: footer"> </footer>
+</body>
+<!--JQUERY-->
+
+
+</html>

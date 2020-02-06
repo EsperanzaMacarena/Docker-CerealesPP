@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="pagEstaticas/head :: headFragment (titulo='Perfil')">
+
+</head>
+<body>
+	<!--nav-->
+	<!--AQUÍ PONER NAV DE USUARIO LOGUEADO-->
+	<nav th:replace="/user/navUser :: navUser"></nav>
+	<!--Fin del nav-->
+
+	<aside class="float-left col-lg-2 p-0 subNav">
+		<div class="container-fluid col-lg-12 col-12 p-0 float-left subNav">
+			<nav class="nav nav-stacked text-center subNav">
+				<a class="nav-link col-lg-12 col-md-6 col-6 boton  p-4 rounded-0"
+					href="#" th:href="@{/user/perfil}">Ver perfil</a> <a
+					class="nav-link col-lg-12 col-md-6 col-6 p-4 rounded-0"
+					href="pedidos.html" th:href="@{/user/pedidos}">Ver pedidos</a>
+			</nav>
+		</div>
+	</aside>
+	<!--Section-->
+	<section class="float-left pb-4 col-lg-10">
+
+		<div class="container-fluid mt-4 col-lg-12 col-12 float-right">
+			<div class="container-fluid mt-4">
+				<div class="row">
+					<div class="col-1"></div>
+					<div class="col-10 display-4 fondoVerde">
+						<div class="float-left">
+							<p>Perfil</p>
+						</div>
+					</div>
+					<div class="col-1"></div>
+				</div>
+			</div>
+			<div class="container-fluid ">
+				<div class="row">
+					<div class="col-1"></div>
+					<div class="col-10">
+						<div class="row">
+							<div class="col-12">
+								<a href="indexUser.html" th:href="@{/}"
+									class=" text-decoration-none text-dark btn  mt-2 font-weight-bold boton"
+									role="button"><i class="fa fa-arrow-left"
+									aria-hidden="true"></i> Volver a Inicio </a> <a
+									href="indexUser.html" th:href="@{/user/editarperfil}"
+									class=" text-decoration-none text-white btn  mt-2 font-weight-bold btn-success float-right"
+									role="button">Editar perfil <i class="fas fa-edit"></i></a>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-1"></div>
+				</div>
+			</div>
+			<div class="container-fluid mt-2">
+				<div class="row">
+					<div class="col-1"></div>
+					<div class="col-10 fondoVerde">
+						<p class="font-weight-bold pt-2">Datos de perfil</p>
+					</div>
+					<div class="col-1"></div>
+				</div>
+				<div class="row">
+					<div class="col-1"></div>
+					<div class=" col-10 col-sm-11 col-md-2 col-lg-2">
+						<p class="font-weight-bold pt-2">Empresa</p>
+					</div>
+					<div class="col-1 d-md-none"></div>
+					<div class=" col-10 col-sm-11 col-md-9 col-lg-3">
+						<p class="pt-2" th:text="${usuarioLogged.nomEmpresa}">xxxxxxxxxxxxx
+						</p>
+					</div>
+					<div class="col-1 d-lg-none"></div>
+					<div class=" col-10 col-sm-11 col-md-2 col-lg-2">
+						<p class="font-weight-bold pt-2">CIF</p>
+					</div>
+					<div class="col-1 d-md-none"></div>
+					<div class=" col-10 col-sm-11 col-md-9 col-lg-3">
+						<p class="pt-2" th:text="${usuarioLogged.cif}">xxxxxxxxxxxxx</p>
+					</div>
+					<div class="col-lg-1"></div>
+					<div class="col-1 "></div>
+
+					<div class=" col-10 col-md-2 col-sm-11">
+						<p class="font-weight-bold pt-2">Teléfono</p>
+					</div>
+					<div class="col-sm-1 d-md-none"></div>
+					<div class=" col-10 col-md-9 col-sm-11 col-lg-3">
+						<p class="pt-2" th:text="${usuarioLogged.telefono}">955854875
+						</p>
+					</div>
+					<div class="col-1 d-lg-none"></div>
+					<div class=" col-10 col-md-2 col-sm-11">
+						<p class="font-weight-bold pt-2">Email</p>
+					</div>
+					<div class="col-1 d-md-none"></div>
+					<div class=" col-10 col-md-9 col-sm-11 col-lg-3">
+						<p class="pt-2" th:text="${usuarioLogged.email}">empresanomempresa@empresaempresa.com
+						</p>
+					</div>
+					<div class="col-1"></div>
+					<div class="col-lg-1"></div>
+				</div>
+				<div class="row">
+					<div class="col-1"></div>
+					<div class=" col-10 col-md-2 col-sm-11">
+						<p class="font-weight-bold pt-2">Contacto</p>
+					</div>
+					<div class="col-1 d-md-none"></div>
+					<div class=" col-10 col-md-9 col-sm-11 col-lg-9">
+						<p class="pt-2"
+							th:text="|${usuarioLogged.nombre}, ${usuarioLogged.apellidos}|">Nombrecompleto
+							Apellido Apellido</p>
+					</div>
+					<div class="col-1"></div>
+				</div>
+
+				<div class="row">
+					<div class="col-1"></div>
+					<div class="font-weight-bold col-lg-2 col-10 col-md-3 col-sm-11">
+						<p class="pt-2">Dirección social</p>
+					</div>
+					<div class="col-1 d-md-none"></div>
+					<div class=" col-10 col-md-8 col-sm-11 col-lg-3">
+						<p class="pt-2" th:text="${usuarioLogged.direccionSocial}">Calle
+							xxxxxxxx xxxxxxxxx xxxxx Polígono xxxxxx Número xxx</p>
+					</div>
+					<div class="col-1 d-lg-none"></div>
+					<div class=" col-lg-2 col-10 col-md-3 font-weight-bold col-sm-11">
+						<p class="pt-2">Código Postal</p>
+					</div>
+					<div class="col-1 d-md-none"></div>
+					<div class="col-10 col-md-8 col-sm-11 col-lg-3">
+						<p class="pt-2 " th:text="${usuarioLogged.cpSocial}">28000</p>
+					</div>
+					<div class="col-lg-1"></div>
+					<div class="col-1"></div>
+
+					<div class="col-lg-2 font-weight-bold col-10 col-md-3 col-sm-11">
+						<p class="pt-2">Localidad</p>
+					</div>
+					<div class="col-1 d-md-none"></div>
+					<div class=" col-10 col-lg-3 col-md-8 col-sm-11">
+						<p class="pt-2" th:text="${usuarioLogged.localidadSocial}">Las
+							Cabezas de San Juan</p>
+					</div>
+					<div class="col-1 d-lg-none"></div>
+					<div class="font-weight-bold col-lg-2 col-10 col-md-3 col-sm-11">
+						<p class="pt-2">Provincia</p>
+					</div>
+					<div class="col-1 d-md-none"></div>
+					<div class=" col-10 col-md-8 col-lg-3">
+						<p class="pt-2" th:text="${usuarioLogged.provinciaSocial}">Santa
+							Cruz de Tenerife</p>
+					</div>
+					<div class="col-1"></div>
+				</div>
+
+				<div class="row">
+					<div class="col-1"></div>
+					<div class="col-10 fondoVerde">
+						<p class="font-weight-bold pt-2">Datos de su cuenta</p>
+					</div>
+					<div class="col-1"></div>
+				</div>
+				<div class="row m-1">
+					<div class="col-1"></div>
+					<div class=" col-11 col-md-2">
+						<p class="font-weight-bold pt-2">Usuario</p>
+					</div>
+					<div class="col-1 d-md-none"></div>
+					<div class=" col-11 col-md-9">
+						<p class="pt-2" th:text="${usuarioLogged.email}">empresanomempresa@empresaempresa.com
+						</p>
+					</div>
+					<div class="col-1 d-lg-none"></div>
+
+					<div class="col-1"></div>
+				</div>
+				<div class="row">
+					<div class="col-1"></div>
+					<div class="col-10 fondoVerde">
+						<p class="font-weight-bold pt-2 d-block float-left">Dirección
+							de envío</p>
+					</div>
+					<div class="col-1"></div>
+				</div>
+				<div class="row">
+					<div class="col-1"></div>
+					<div class="font-weight-bold col-lg-2 col-10 col-md-3 col-sm-11">
+						<p class="pt-2">Dirección</p>
+					</div>
+					<div class="col-1 d-md-none"></div>
+					<div class=" col-10 col-md-8 col-sm-11 col-lg-3">
+						<p class="pt-2" th:text="${usuarioLogged.direccionEnvio}">Calle
+							xxxxxxxx xxxxxxxxx xxxxx Polígono xxxxxx Número xxx</p>
+					</div>
+
+
+					<div class="col-1 d-lg-none"></div>
+					<div class=" col-lg-2 col-10 col-md-3 font-weight-bold col-sm-11">
+						<p class="pt-2">Código Postal</p>
+					</div>
+					<div class="col-1 d-md-none"></div>
+					<div class="col-10 col-md-8 col-sm-11 col-lg-3">
+						<p class="pt-2 " th:text="${usuarioLogged.cpEnvio}">28000</p>
+					</div>
+					<div class="col-lg-1"></div>
+					<div class="col-1"></div>
+
+					<div class="col-lg-2 font-weight-bold col-10 col-md-3 col-sm-11">
+						<p class="pt-2">Localidad</p>
+					</div>
+					<div class="col-1 d-md-none"></div>
+					<div class=" col-10 col-lg-3 col-md-8 col-sm-11">
+						<p class="pt-2" th:text="${usuarioLogged.localidadEnvio}">Las
+							Cabezas de San Juan</p>
+					</div>
+					<div class="col-1 d-lg-none"></div>
+					<div class="font-weight-bold col-lg-2 col-10 col-md-3 col-sm-11">
+						<p class="pt-2">Provincia</p>
+					</div>
+					<div class="col-1 d-md-none"></div>
+					<div class=" col-10 col-md-8 col-lg-3">
+						<p class="pt-2" th:text="${usuarioLogged.provinciaEnvio}">Santa
+							Cruz de Tenerife</p>
+					</div>
+
+					<div class="col-1"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer th:replace="pagEstaticas/footer :: footer"></footer>
+
+</body>
+</html>

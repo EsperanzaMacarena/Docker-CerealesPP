@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="pagEstaticas/head :: headFragment (titulo='Administrador-Detalle pedido')">
+
+</head>
+<body>
+	<!--nav-->
+	<nav th:replace="admin/navAdmin :: navAdmin"></nav>
+	<!--Fin del nav-->
+
+	<aside class="float-left col-lg-2 p-0 subNav">
+		<div class="container-fluid col-lg-12 h-100 col-12 p-0 float-left">
+			<nav class="nav nav-stacked text-center subNav">
+				<a class="nav-link col-lg-12 col-md-4 col-4 p-4 rounded-0"
+					href="adminClientesListar.html" th:href="@{/admin/clientes}">Clientes</a>
+				<a class="nav-link col-lg-12 col-md-4 col-4 boton p-4 rounded-0"
+					href="pedidos.html" th:href="@{/admin/pedidos}">Pedidos</a> <a
+					class="nav-link col-lg-12 col-md-4 col-4 p-4 rounded-0"
+					href="productos.html" th:href="@{/admin/productos}">Productos</a>
+
+			</nav>
+		</div>
+	</aside>
+	<section class="col-lg-10 float-left p-0">
+		<div class="container-fluid mt-4">
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10 display-4 fondoVerde">
+					<div class="float-left">
+						<p>
+							Pedido <span th:text="${pedido.id}">xx</span>
+						</p>
+					</div>
+				</div>
+				<div class="col-1"></div>
+			</div>
+		</div>
+		<div class="container-fluid mt-2 mb-2">
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10">
+					<a href="detalleCliente.html"
+						th:href="@{/admin/cliente/{id}(id=${pedido.cliente.id})}" id=""
+						class="btn boton mb-3" role="button">Ir al cliente</a> 
+						<a
+						href="adminPedidos.html" th:href="@{/admin/pedidos}" id=""
+						class="btn boton  mb-3" role="button">Ver todos los pedidos</a>
+				</div>
+				<div class="col-1"></div>
+			</div>
+		</div>
+		<div class="container-fluid mt-2 mb-2">
+			<div class="row">
+				<div class="col-1 d-block"></div>
+				<div class="col-11 col-lg-3">
+					<h4>Estado:</h4>
+					<p th:text="${pedido.estado}">xx</p>
+				</div>
+
+				<div class="col-1"></div>
+
+				<div class="col-lg-2 col-4 ">
+					<h4 class="mt-2">Cambiar Estado:</h4>
+				</div>
+				<div class="col-lg-5 col-7">
+					<form th:action="@{/admin/pedido/{id}/submit (id=${pedido.id})}"
+						method="POST" th:object="${formbeanEstado}" id="cambiarEstado">
+						<select th:field="*{estado}" class="p-2 mt-2"
+							onchange="enviar('cambiarEstado')">
+							<option value=" ">Elija un Estado</option>
+							<option th:each="estadoE : ${estado}" th:value="${estadoE}"
+								th:text="${estadoE.descripcion}" >xxx</option>
+						</select>
+					</form>
+				</div>
+
+
+				<div class="col-1"></div>
+			</div>
+		</div>
+		<div class="container-fluid mt-2 mb-4">
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10 table-responsive text-center">
+					<table class="table table-striped display" id="resultados">
+						<thead class="thead-dark">
+							<tr>
+								<th>Producto</th>
+								<th>Cantidad</th>
+								<th>Precio/u</th>
+								<th>Precio Subtotal</th>
+
+
+
+
+
+							</tr>
+						</thead>
+						<tbody th:remove="all-but-first">
+
+							<tr th:each="linea : ${lineaPedido}">
+								<td th:text="${linea.productoAnadido.nombre}">6498498</td>
+								<td th:text="${linea.cantidad}">Mnemo</td>
+								<td th:text="|${#numbers.formatDecimal(linea.precioUnidad, 0, 'POINT', 2, 'COMMA')} €|">xx</td>
+								<td th:text="|${#numbers.formatDecimal(lineaS.calcularPrecioTotalLinea(linea), 0, 'POINT', 2, 'COMMA')} €|">156474949</td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-1"></div>
+			</div>
+		</div>
+		<div class="container-fluid mt-2 mb-2"
+			th:if="${pedido.estado.name()=='PAGADO'}">
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10">
+					<a href="detalleCliente.html"
+						th:href="@{/admin/pedido/{id}/cancelar (id=${pedido.id})}"><button
+							class="btn btn-danger my-0 mx-auto font-weight-bold"
+							type="submit">Cancelar pedido</button></a>
+				</div>
+				<div class="col-1"></div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

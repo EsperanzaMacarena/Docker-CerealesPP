@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+
+
+</head>
+<body>
+	<!--nav-->
+	<nav th:fragment="navAdmin" class="navbar navbar-expand-md navbar-dark">
+		<a class="navbar-brand" href="adminClientesListar.html" th:href="@{/}">
+			<img class="img-fluid" src="../img/logoTrigo.png"
+			th:src="@{/img/logoTrigo.png}"  th:alt="|Cereales Paco Pérez - Inicio|"  alt="Cereales Paco Pérez - Inicio">
+			<h5 class="d-inline">Cereales Paco Pérez</h5>
+		</a>
+		<button class="navbar-toggler d-lg-none float-right" type="button"
+			data-toggle="collapse" data-target="#collapsibleNavId"
+			aria-controls="collapsibleNavId" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="collapsibleNavId">
+			<div class="row w-100">
+				<div class="col-lg-12">
+					<a class="nav-link font-weight-bold col-6 float-left text-white"
+						href="adminClientesListar.html" th:href="@{/admin/clientes}">Panel
+						del Administrador</a>
+					<form th:action="@{/logout}" method="POST" id="logoutForm"></form>
+					<a href="#" onclick="enviar('logoutForm')"
+						class="nav-link btn-danger btn col-lg-2 col-5 rounded float-right">Desconectar</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<!--Fin del nav-->
+</body>
+</html>
